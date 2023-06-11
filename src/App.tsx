@@ -14,11 +14,14 @@ function App() {
         {id: v1(), title: "Rest API", isDone: false},
         {id: v1(), title: "GraphQL", isDone: false},
     ]);
-    console.log(tasks);
 
-    function createNewTask() {
-        const newTack = {id: v1(), title: "Sasha", isDone: false}
+    // const newTack = {id: v1(), title: value, isDone: false}
+
+
+    function createNewTask(value: string) {
+        const newTack = {id: v1(), title: value, isDone: false}
         setTasks([newTack, ...tasks])
+        value = ''
     }
 
     function removeTask(id: string) {
@@ -40,7 +43,6 @@ function App() {
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
-
     return (
         <div className="App">
             <Todolist title="What to learn"
