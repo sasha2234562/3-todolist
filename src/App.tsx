@@ -21,11 +21,9 @@ function App() {
             const newTack = {id: v1(), title: value, isDone: false}
             setTasks([newTack, ...tasks])
             value = ''
+        } else {
+            setError('Title is required')
         }
-        setError('Title is required')
-        // const newTack = {id: v1(), title: value, isDone: false}
-        // setTasks([newTack, ...tasks])
-        // value = ''
     }
 
     function removeTask(id: string) {
