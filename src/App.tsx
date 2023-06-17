@@ -54,6 +54,7 @@ function App() {
                       changeFilter={changeFilter}
                       createNewTask={createNewTask}
                       error={error}
+                      setErrop={setError}
             />
         </div>
     );
