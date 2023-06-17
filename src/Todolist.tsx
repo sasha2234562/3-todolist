@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {FilterValuesType} from './App';
+import {text} from "stream/consumers";
 
 type TaskType = {
     id: string
@@ -13,6 +14,7 @@ type PropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
     createNewTask: (value : string)=>void
+    error: string | null
 }
 
 export function Todolist(props: PropsType) {
@@ -29,11 +31,14 @@ export function Todolist(props: PropsType) {
 
     }
 
+    // let [error, setError] = useState<null | string>(null)
+
     return <div>
         <h3>{props.title}</h3>
         <div>
             <input onChange={inputHandler} value={newInputValue}/>
             <button onClick={buttonHandler}>+</button>
+            {<div className={props.error ? 'error-text' : ''}>Field is required</div>}
         </div>
         <ul>
             {
