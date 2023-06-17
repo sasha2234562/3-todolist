@@ -19,7 +19,7 @@ function App() {
 
 
     function createNewTask(value: string) {
-        if(value === '') {
+        if(value.trim() === '') {
             return
         }
         const newTack = {id: v1(), title: value, isDone: false}
