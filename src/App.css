@@ -7,7 +7,9 @@
   margin-right: 50px;
 }
 .error-text{
-  color: red;
+  color: white;
+  background-color: red;
+  margin-top: 11px;
 }
 
 .error-input{
