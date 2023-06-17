@@ -14,17 +14,18 @@ function App() {
         {id: v1(), title: "Rest API", isDone: false},
         {id: v1(), title: "GraphQL", isDone: false},
     ]);
-
-    // const newTack = {id: v1(), title: value, isDone: false}
-
+    let [error, setError] = useState<null | string>(null)
 
     function createNewTask(value: string) {
-        if(value.trim() === '') {
-            return
+        if (value.trim() !== '') {
+            const newTack = {id: v1(), title: value, isDone: false}
+            setTasks([newTack, ...tasks])
+            value = ''
         }
-        const newTack = {id: v1(), title: value, isDone: false}
-        setTasks([newTack, ...tasks])
-        value = ''
+        setError('Title is required')
+        // const newTack = {id: v1(), title: value, isDone: false}
+        // setTasks([newTack, ...tasks])
+        // value = ''
     }
 
     function removeTask(id: string) {
@@ -46,6 +47,7 @@ function App() {
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
+
     return (
         <div className="App">
             <Todolist title="What to learn"
@@ -53,6 +55,7 @@ function App() {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
                       createNewTask={createNewTask}
+                      error={error}
             />
         </div>
     );
