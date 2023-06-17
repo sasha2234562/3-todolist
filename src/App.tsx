@@ -19,6 +19,9 @@ function App() {
 
 
     function createNewTask(value: string) {
+        if(value === '') {
+            return
+        }
         const newTack = {id: v1(), title: value, isDone: false}
         setTasks([newTack, ...tasks])
         value = ''
