@@ -31,14 +31,12 @@ export function Todolist(props: PropsType) {
 
     }
 
-    // let [error, setError] = useState<null | string>(null)
-
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input onChange={inputHandler} value={newInputValue}/>
+            <input className={props.error ? 'error-input' : ''} onChange={inputHandler} value={newInputValue}/>
             <button onClick={buttonHandler}>+</button>
-            {<div className={props.error ? 'error-text' : ''}>Field is required</div>}
+            {props.error ? <div className={ 'error-text'}>Field is required</div> : ''}
         </div>
         <ul>
             {
