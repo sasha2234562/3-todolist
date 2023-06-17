@@ -9,3 +9,7 @@
 .error-text{
   color: red;
 }
+
+.error-input{
+  background-color: red;
+}
