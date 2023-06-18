@@ -45,7 +45,7 @@ export function Todolist(props: PropsType) {
                 onKeyPress={onKeyPress}
             />
             <button onClick={buttonHandler}>*</button>
-            {props.error ? <div>{props.error}</div> : ""}
+            {props.error ? <div className={'error-text'}>{props.error}</div> : ""}
         </div>
         <ul>
             {
