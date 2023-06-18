@@ -14,7 +14,7 @@ type PropsType = {
     changeFilter: (value: FilterValuesType) => void
     createNewTask: (value: string) => void
     error: string | null
-    setErrop: (value : string | null)=>void
+    setErrop: (value: string | null) => void
 }
 
 export function Todolist(props: PropsType) {
@@ -30,14 +30,20 @@ export function Todolist(props: PropsType) {
         setInputValue(event.currentTarget.value)
 
     }
-    function onKeyPress(){
+
+    function onKeyPress() {
         props.setErrop(null)
     }
 
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input onChange={inputHandler} value={newInputValue} onKeyPress={onKeyPress}/>
+            <input
+                className={props.error ? "error-input" : ''}
+                onChange={inputHandler}
+                value={newInputValue}
+                onKeyPress={onKeyPress}
+            />
             <button onClick={buttonHandler}>*</button>
             {props.error ? <div>{props.error}</div> : ""}
         </div>
