@@ -37,14 +37,9 @@ export function Todolist(props: PropsType) {
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input className={
-                props.error ? 'error-input' : ''}
-                   onChange={inputHandler}
-                   value={newInputValue}
-                   onKeyPress={onKeyPress}
-            />
-            <button onClick={buttonHandler}>+</button>
-            {props.error ? <div className={'error-text'}>Field is required</div> : ''}
+            <input/>
+            <button onClick={buttonHandler}>*</button>
+            {props.error ? <div>{props.error}</div> : ""}
         </div>
         <ul>
             {
