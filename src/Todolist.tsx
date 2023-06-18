@@ -37,7 +37,7 @@ export function Todolist(props: PropsType) {
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input/>
+            <input onChange={inputHandler} value={newInputValue} onKeyPress={onKeyPress}/>
             <button onClick={buttonHandler}>*</button>
             {props.error ? <div>{props.error}</div> : ""}
         </div>
