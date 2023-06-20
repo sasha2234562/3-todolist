@@ -21,9 +21,11 @@ function App() {
     }
 
     function addTask(title: string) {
-        let task = {id: v1(), title: title, isDone: false};
-        let newTasks = [task, ...tasks];
-        setTasks(newTasks);
+        if (title !== '') {
+            let task = {id: v1(), title: title, isDone: false};
+            let newTasks = [task, ...tasks];
+            setTasks(newTasks);
+        }
     }
 
     let [filter, setFilter] = useState<FilterValuesType>("all");
