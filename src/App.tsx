@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
-import {isBoolean} from "util";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -46,15 +45,15 @@ function App() {
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
-
-    function changeStatus(taskId: string, isDone: boolean) {
-        let task = tasks.find((item) => item.id === taskId);
-        if (task) {
+    function changeStatus(taskId: string, isDone : boolean){
+        let task = tasks.find((item)=> item.id ===  taskId)
+        if(task) {
             task.isDone = isDone
         }
-        let copy = [...tasks]
-        setTasks(copy)
+        let clone = [...tasks]
+        setTasks(clone)
     }
+
 
     return (
         <div className="App">
@@ -63,8 +62,9 @@ function App() {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
                       addTask={addTask}
-                      changeStatus={changeStatus}
                       error={error}
+                      setError={setError}
+                      changeStatus={changeStatus}
             />
         </div>
     );
