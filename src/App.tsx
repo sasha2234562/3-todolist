@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
+import {isBoolean} from "util";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -20,7 +21,10 @@ function App() {
         setTasks(filteredTasks);
     }
 
+    let [error, setError] = useState<null | boolean>(null)
+
     function addTask(title: string) {
+        setError(title === '')
         if (title !== '') {
             let task = {id: v1(), title: title, isDone: false};
             let newTasks = [task, ...tasks];
@@ -60,6 +64,7 @@ function App() {
                       changeFilter={changeFilter}
                       addTask={addTask}
                       changeStatus={changeStatus}
+                      error={error}
             />
         </div>
     );
