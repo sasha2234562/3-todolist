@@ -3,15 +3,6 @@
   display: flex;
 }
 
-.App div {
+.App > div {
   margin-right: 50px;
-}
-.error-text{
-  color: white;
-  background-color: red;
-  margin-top: 11px;
-}
-
-.error-input{
-  border: 1px solid red;
 }
