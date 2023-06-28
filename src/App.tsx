@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {v1} from 'uuid';
 import {Todolist} from "./Todolist";
+import {NewApp} from "./newApp";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type  todolistType = {
@@ -110,6 +111,7 @@ function App() {
                 )
 
             })}
+            <NewApp/>
         </div>
     );
 }

@@ -28,7 +28,7 @@ export function Todolist(props: PropsType) {
 
     const addTask = () => {
         props.addTask(title, props.id);
-        setError(title === '')
+        setError(title.trim() === '')
         setTitle("");
     }
 
