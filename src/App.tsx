@@ -55,13 +55,16 @@ function App() {
         let clone = [...tasks]
         setTasks(clone)
     }
-
+    let todolistIdOne = v1();
+    let todolistIdTwo = v1();
     let [todolists, setTodolists] = useState<Array<todolistType>>([
-        {id: v1(), title: "What to learn", filter: 'active'},
+        {id: todolistIdOne, title: "What to learn", filter: 'active'},
         {id: v1(), title: "What to learn", filter: 'completed'},
     ])
 
+let [allTasks, setAllTasks] = useState({
 
+})
     return (
         <div className={'App'}>
             {todolists.map((item) => {
