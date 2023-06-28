@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
 import {v1} from 'uuid';
+import {Todolist} from "./Todolist";
 
 export type FilterValuesType = "all" | "active" | "completed";
+type  todolistType = {
+    id: string
+    title: string
+    filter: FilterValuesType
+}
 
 function App() {
 
@@ -33,15 +38,6 @@ function App() {
 
     let [filter, setFilter] = useState<FilterValuesType>("all");
 
-    let tasksForTodolist = tasks;
-
-    if (filter === "active") {
-        tasksForTodolist = tasks.filter(t => t.isDone === false);
-    }
-    if (filter === "completed") {
-        tasksForTodolist = tasks.filter(t => t.isDone === true);
-    }
-
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
@@ -54,18 +50,36 @@ function App() {
         setTasks(clone)
     }
 
+    let [todolist, setTodolist] = useState<Array<todolistType>>([
+        {id: v1(), title: "What to learn", filter: 'active'},
+        {id: v1(), title: "What to learn", filter: 'completed'},
+    ])
+
 
     return (
-        <div className="App">
-            <Todolist title="What to learn"
-                      tasks={tasksForTodolist}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}
-                      error={error}
-                      setError={setError}
-                      changeStatus={changeStatus}
-            />
+        <div className={'App'}>
+            {todolist.map((item)=> {
+                let tasksForTodolist = tasks;
+
+                if (filter === "active") {
+                    tasksForTodolist = tasks.filter(t => t.isDone === false);
+                }
+                if (filter === "completed") {
+                    tasksForTodolist = tasks.filter(t => t.isDone === true);
+                }
+                return(
+                        <Todolist title={item.title}
+                                  tasks={tasksForTodolist}
+                                  removeTask={removeTask}
+                                  changeFilter={changeFilter}
+                                  addTask={addTask}
+                                  error={error}
+                                  setError={setError}
+                                  changeStatus={changeStatus}
+                        />
+                )
+
+            })}
         </div>
     );
 }
