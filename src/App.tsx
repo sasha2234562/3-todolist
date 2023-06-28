@@ -22,11 +22,11 @@ function App() {
         setTasksObj({...tasksObj});
     }
 
-    let [error, setError] = useState<null | boolean>(null)
+    // let [error, setError] = useState<null | boolean>(null)
 
     function addTask(title: string, todolistId: string) {
         const tasks = tasksObj[todolistId]
-        setError(title === '')
+        // setError(title === '')
         if (title !== '') {
             let task = {
                 id: v1(),
@@ -83,6 +83,7 @@ function App() {
     return (
         <div className={'App'}>
             {todolists.map((item) => {
+                // let [error, setError] = useState<null | boolean>(null)
 
                 let tasksForTodolist = tasksObj[item.id];
 
@@ -100,8 +101,8 @@ function App() {
                         removeTask={removeTask}
                         changeFilter={changeFilter}
                         addTask={addTask}
-                        error={error}
-                        setError={setError}
+                        // error={error}
+                        // setError={setError}
                         changeStatus={changeStatus}
                         filter={item.filter}
                         id={item.id}
