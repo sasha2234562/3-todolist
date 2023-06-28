@@ -5,12 +5,11 @@ import {ChangeEvent, useState} from "react";
 type newTodolistPropsType = {
     tasks: Array<newTasksType>
     title: string
-    // newTasksAdd: (event: string) => void
     addNewTasks: (value: string)=>void
+    removeTask:(id: string)=> void
 }
 
 export const NewTodolist = (props: newTodolistPropsType) => {
-
     let [value, setValue] = useState('')
 
     const onChangeNandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +18,9 @@ export const NewTodolist = (props: newTodolistPropsType) => {
     const onClickHandler = () => {
         props.addNewTasks(value)
         setValue('')
+    }
+    const removeOnclickHandler= (id: string)=> {
+        props.removeTask(id)
     }
 
     return (
@@ -32,7 +34,7 @@ export const NewTodolist = (props: newTodolistPropsType) => {
                     <li key={item.id}>
                         <input type={"checkbox"} checked={item.isDone}/>
                         <span>{item.title}</span>
-                        <button>x</button>
+                        <button onClick={()=>removeOnclickHandler(item.id)}>x</button>
                     </li>
                 )
 

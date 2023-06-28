@@ -98,8 +98,6 @@ function App() {
                         removeTask={removeTask}
                         changeFilter={changeFilter}
                         addTask={addTask}
-                        // error={error}
-                        // setError={setError}
                         changeStatus={changeStatus}
                         filter={item.filter}
                         id={item.id}

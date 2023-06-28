@@ -26,18 +26,23 @@ export const NewApp = () => {
     const addNewTasks = (value:string) => {
             let task = {id: v1(), title: value, isDone: true}
             if(value) {
-                // let task = {id: v1(), title: value, isDone: true}
-                setNewTasks([task, ...newTasks])
+                let task = {id: v1(), title: value, isDone: true}
+                setNewTask([task, ...newTask])
             }
     }
-    // debugger
+    const removeTask = (id: string)=>{
+        let filterTasks = newTask.filter((item)=> item.id !== id);
+        console.log(filterTasks)
+        setNewTask([...filterTasks])
+    }
 return(
     <div>
         {todolists.map((item)=> {
             return(
                 <div key={item.id}>
                     <NewTodolist
-                        tasks={newTasks}
+                        removeTask={removeTask}
+                        tasks={newTask}
                         title={item.title}
                         addNewTasks={addNewTasks}
                     />
