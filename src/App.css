@@ -14,3 +14,7 @@
 .error-text {
  color: red;
 }
+
+.active-filter{
+    background-color: chartreuse;
+}
