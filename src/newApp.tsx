@@ -22,14 +22,29 @@ export const NewApp = () => {
         {id: v1(), title: "I need to bye tomorrow", filter: 'completed'},
     ])
 
+    let [newTask, setNewTask] = useState<Array<newTasksType>>(newTasks)
+    const addNewTasks = (value:string) => {
+            let task = {id: v1(), title: value, isDone: true}
+            if(value) {
+                let task = {id: v1(), title: value, isDone: true}
+                setNewTask([task, ...newTask])
+            }
+    }
+    const removeTask = (id: string)=>{
+        let filterTasks = newTask.filter((item)=> item.id !== id);
+        console.log(filterTasks)
+        setNewTask([...filterTasks])
+    }
 return(
     <div>
         {todolists.map((item)=> {
             return(
-                <div>
+                <div key={item.id}>
                     <NewTodolist
-                        tasks={newTasks}
+                        removeTask={removeTask}
+                        tasks={newTask}
                         title={item.title}
+                        addNewTasks={addNewTasks}
                     />
             </div>
             )
