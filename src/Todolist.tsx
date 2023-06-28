@@ -13,8 +13,8 @@ type PropsType = {
     removeTask: (taskId: string, todolistId: string) => void
     changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistId : string) => void
-    error: boolean | null
-    setError: (value: boolean | null) => void
+    // error: boolean | null
+    // setError: (value: boolean | null) => void
     changeStatus: (taskId: string, isDone: boolean, todolistId: string) => void
     filter: string
     id: string
@@ -23,9 +23,12 @@ type PropsType = {
 export function Todolist(props: PropsType) {
 
     let [title, setTitle] = useState("")
+    let [error, setError] = useState<null | boolean>(null)
+
 
     const addTask = () => {
         props.addTask(title, props.id);
+        setError(title === '')
         setTitle("");
     }
 
@@ -48,11 +51,11 @@ export function Todolist(props: PropsType) {
             <input value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
-                   className={props.error ? 'error-input' : ''}
-                   onKeyDown={() => props.setError(null)}
+                   className={error ? 'error-input' : ''}
+                   onKeyDown={() => setError(null)}
             />
             <button onClick={addTask}>+</button>
-            {props.error ? <div className={'error-text'}>Введите текст</div> : ''}
+            {error ? <div className={'error-text'}>Введите текст</div> : ''}
 
         </div>
         <ul>
