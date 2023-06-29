@@ -5,7 +5,7 @@ import {Todolist} from "./Todolist";
 import {NewApp} from "./newApp";
 
 export type FilterValuesType = "all" | "active" | "completed";
-type  todolistType = {
+ export type todolistType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -36,7 +36,6 @@ function App() {
     }
 
     function changeFilter(value: FilterValuesType, todoListId: string) {
-        debugger
         let todo = todolists.find((item) => item.id === todoListId);
         if (todo) {
             todo.filter = value;
@@ -50,7 +49,6 @@ function App() {
         if (task) {
             task.isDone = isDone
         }
-        let clone = [...tasks]
         setTasksObj({...tasksObj})
     }
 
@@ -66,7 +64,7 @@ function App() {
             {id: v1(), title: "GraphQL", isDone: false},
         ],
         [todolistIdTwo]: [
-            {id: v1(), title: "Meat", isDone: true},
+            {id: v1(), title: "Meat", isDone: true,},
             {id: v1(), title: "Milk", isDone: true},
             {id: v1(), title: "Cats", isDone: false}
         ]
