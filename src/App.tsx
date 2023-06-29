@@ -36,6 +36,7 @@ function App() {
     }
 
     function changeFilter(value: FilterValuesType, todoListId: string) {
+        debugger
         let todo = todolists.find((item) => item.id === todoListId);
         if (todo) {
             todo.filter = value;
