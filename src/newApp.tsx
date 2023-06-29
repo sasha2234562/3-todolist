@@ -104,6 +104,7 @@ export const NewApp = () => {
                             addNewTasks={addNewTasks}
                             changeStatus={changeStatus}
                             filter={filter}
+                            filt={filt}
                         />
                     </div>
                 )
