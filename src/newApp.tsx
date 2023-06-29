@@ -12,43 +12,15 @@ export type  newTasksType = {
 export const NewApp = () => {
 
     let [Tasks, setTasks] = useState<Array<newTasksType>>([
-        {
-            id: v1(),
-            title: "HTML&CSS",
-            isDone: true
-        },
-        {
-            id: v1(),
-            title: "JS",
-            isDone: true
-        },
-        {
-            id: v1(),
-            title: "ReactJS",
-            isDone: false
-        },
-        {
-            id: v1(),
-            title: "Rest API",
-            isDone: false
-        },
-        {
-            id: v1(),
-            title: "GraphQL",
-            isDone: false
-        },
+        {id: v1(), title: "HTML&CSS", isDone: true},
+        {id: v1(), title: "JS", isDone: true},
+        {id: v1(), title: "ReactJS", isDone: false},
+        {id: v1(), title: "Rest API", isDone: false},
+        {id: v1(), title: "GraphQL", isDone: false},
     ])
     let [todolists, setTodolists] = useState([
-        {
-            id: v1(),
-            title: "What do you do today?",
-            filter: 'active'
-        },
-        {
-            id: v1(),
-            title: "I need to bye tomorrow",
-            filter: 'completed'
-        },
+        {id: v1(), title: "What do you do today?", filter: 'active'},
+        {id: v1(), title: "I need to bye tomorrow", filter: 'completed'},
     ])
 
     let [newTask, setNewTask] = useState<Array<newTasksType>>(Tasks)
@@ -84,8 +56,8 @@ export const NewApp = () => {
     if (filt === 'active') {
         filterCreateTask = newTask.filter((item) => item.isDone === false)
     }
-    if(filt === 'completed') {
-        filterCreateTask = newTask.filter((item)=> item.isDone === true)
+    if (filt === 'completed') {
+        filterCreateTask = newTask.filter((item) => item.isDone === true)
     }
     const filter = (filter: FilterValuesType) => {
         if (filter) {
