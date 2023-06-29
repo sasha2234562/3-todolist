@@ -15,17 +15,14 @@ function App() {
 
     function removeTask(id: string, todolistId: string) {
         let tasks = tasksObj[todolistId]
-        console.log(todolistId)
 
         let filteredTasks = tasks.filter(t => t.id !== id);
-        console.log(filteredTasks)
         tasksObj[todolistId] = filteredTasks
         setTasksObj({...tasksObj});
     }
 
     function addTask(title: string, todolistId: string) {
         const tasks = tasksObj[todolistId]
-        // setError(title === '')
         if (title !== '') {
             let task = {
                 id: v1(),

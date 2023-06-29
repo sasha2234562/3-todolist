@@ -39,6 +39,9 @@ export const NewTodolist = (props: newTodolistPropsType) => {
                 )
 
             })}
+            <button>All</button>
+            <button>Active</button>
+            <button>Complited</button>
         </div>
     )
 }
