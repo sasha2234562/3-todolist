@@ -1,6 +1,7 @@
 import {newTasksType} from "./newApp";
 import {ChangeEvent, useState} from "react";
 import {FilterValuesType} from "./App";
+import {NewUniversalInputTwo} from "./new universal-input-two";
 
 
 type newTodolistPropsType = {
@@ -49,14 +50,15 @@ export const NewTodolist = (props: newTodolistPropsType) => {
     return (
         <div>
             <h3>{props.title}</h3>
-            <button onClick={deliteTodolist}>x</button>
-            <input
-                onChange={onChangeHandler}
-                value={value}
-                className={error ? 'error-input' : ''}
-            />
-            <button onClick={onClickHandler}>+</button>
-            {error ? <div className={'error-text'}>enter text</div> : ''}
+            <NewUniversalInputTwo/>
+            {/*<button onClick={deliteTodolist}>x</button>*/}
+            {/*<input*/}
+            {/*    onChange={onChangeHandler}*/}
+            {/*    value={value}*/}
+            {/*    className={error ? 'error-input' : ''}*/}
+            {/*/>*/}
+            {/*<button onClick={onClickHandler}>+</button>*/}
+            {/*{error ? <div className={'error-text'}>enter text</div> : ''}*/}
             {props.tasks.map((item) => {
 
                 const onChangeHandlerChecked = (event: ChangeEvent<HTMLInputElement>) => {
