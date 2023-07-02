@@ -3,6 +3,7 @@ import './App.css';
 import {v1} from 'uuid';
 import {Todolist} from "./Todolist";
 import {AddItemForm} from "./universal - new-input";
+import {NewApp} from "./newApp";
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type todolistType = {
@@ -120,7 +121,7 @@ setTodolists([todolist, ...todolists])
                 )
 
             })}
-            {/*<NewApp/>*/}
+            <NewApp/>
         </div>
     );
 }
