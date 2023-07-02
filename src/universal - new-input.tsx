@@ -1,12 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type propsTypeNewInput = {
-    id: string
-    addTask: (title: string, todolistId: string) => void
+    addItem: (title: string) => void
 }
 
 
-export const UniversalNewInput = (props: propsTypeNewInput) => {
+export const AddItemForm = (props: propsTypeNewInput) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<null | boolean>(null)
 
@@ -15,7 +14,7 @@ export const UniversalNewInput = (props: propsTypeNewInput) => {
     }
 
     const addTask = () => {
-        props.addTask(title, props.id);
+        props.addItem(title);
         setError(title.trim() === '')
         setTitle("");
     }
@@ -38,7 +37,7 @@ const addTaskHandler= ()=> {
                    onKeyDown={() => setError(null)}
             />
             <button onClick={addTaskHandler}>+</button>
-            {error ? <div className={'error-text'}>Введите текст</div> : ''}
+            {error && <div className={'error-text'}>Введите текст</div> }
 
         </div>
     )
