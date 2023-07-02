@@ -1,6 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
-import {UniversalNewInput} from "./universal - new-input";
+import {AddItemForm} from "./universal - new-input";
 
 type TaskType = {
     id: string
@@ -23,10 +23,13 @@ export function Todolist(props: PropsType) {
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);
     const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
+    }
 
     return <div>
         <h3>{props.title}</h3>
-        <UniversalNewInput addTask={props.addTask} id={props.id}/>
+        <AddItemForm addItem={addTask}/>
         <ul>
             {
                 props.tasks.map(t => {
