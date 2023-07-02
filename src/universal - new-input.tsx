@@ -1,37 +1,44 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type propsTypeNewInput = {
-    title: string
-    onChange: (e: string) => void
-    onKeyPress: (e: number)=>void
-    error: null| boolean
-    addTask: ()=>void
-    setError: (value: null| boolean)=>void
+    id: string
+    addTask: (title: string, todolistId: string) => void
 }
 
 
 export const UniversalNewInput = (props: propsTypeNewInput) => {
-    const onChangeHandler= (e: ChangeEvent<HTMLInputElement>)=>{
-        props.onChange(e.currentTarget.value)
+    let [title, setTitle] = useState("")
+    let [error, setError] = useState<null | boolean>(null)
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
+
+    const addTask = () => {
+        props.addTask(title, props.id);
+        setError(title.trim() === '')
+        setTitle("");
     }
     const onKeyPressHandler= (e: KeyboardEvent<HTMLInputElement>)=> {
-        props.onKeyPress(e.charCode)
+        if (e.charCode === 13) {
+            addTask();
+        }
     }
 
 const addTaskHandler= ()=> {
-        props.addTask()
+        addTask()
 }
 
     return (
         <div>
-            <input value={props.title}
+            <input value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
-                   className={props.error ? 'error-input' : ''}
-                   onKeyDown={() => props.setError(null)}
+                   className={error ? 'error-input' : ''}
+                   onKeyDown={() => setError(null)}
             />
             <button onClick={addTaskHandler}>+</button>
-            {props.error ? <div className={'error-text'}>Введите текст</div> : ''}
+            {error ? <div className={'error-text'}>Введите текст</div> : ''}
 
         </div>
     )
