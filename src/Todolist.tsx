@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
+import {UniversalNewInput} from "./universal - new-input";
 
 type TaskType = {
     id: string
@@ -30,12 +31,13 @@ export function Todolist(props: PropsType) {
         setTitle("");
     }
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value, )
+    const onChange = (e: string) => {
+        setTitle(e)
     }
 
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.charCode === 13) {
+    const onKeyPress = (e: number) => {
+        debugger
+        if (e === 13) {
             addTask();
         }
     }
@@ -45,17 +47,18 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3>{props.title}</h3>
-        <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? 'error-input' : ''}
-                   onKeyDown={() => setError(null)}
-            />
-            <button onClick={addTask}>+</button>
-            {error ? <div className={'error-text'}>Введите текст</div> : ''}
+        <UniversalNewInput title={title} onChange={onChange} onKeyPress={onKeyPress} error={error} addTask={addTask} setError={setError}/>
+        {/*<div>*/}
+        {/*    <input value={title}*/}
+        {/*           onChange={onChangeHandler}*/}
+        {/*           onKeyPress={onKeyPressHandler}*/}
+        {/*           className={error ? 'error-input' : ''}*/}
+        {/*           onKeyDown={() => setError(null)}*/}
+        {/*    />*/}
+        {/*    <button onClick={addTask}>+</button>*/}
+        {/*    {error ? <div className={'error-text'}>Введите текст</div> : ''}*/}
 
-        </div>
+        {/*</div>*/}
         <ul>
             {
                 props.tasks.map(t => {

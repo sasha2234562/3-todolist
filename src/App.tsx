@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import {v1} from 'uuid';
 import {Todolist} from "./Todolist";
-import {NewApp} from "./newApp";
 
 export type FilterValuesType = "all" | "active" | "completed";
- export type todolistType = {
+export type todolistType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -43,7 +42,7 @@ function App() {
         }
     }
 
-    function changeStatus(taskId: string, isDone: boolean, todolistId : string) {
+    function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
         const tasks = tasksObj[todolistId]
         let task = tasks.find((item) => item.id === taskId)
         if (task) {
@@ -73,7 +72,10 @@ function App() {
         {id: todolistIdOne, title: "What to learn", filter: 'active'},
         {id: todolistIdTwo, title: "I need to bye today", filter: 'completed'},
     ])
-
+    const deliteTodo = (todoId: string) => {
+        let filter = todolists.filter((item) => item.id === todoId)
+        setTodolists(filter)
+    }
     return (
         <div className={'App'}>
             {todolists.map((item) => {
@@ -97,11 +99,12 @@ function App() {
                         changeStatus={changeStatus}
                         filter={item.filter}
                         id={item.id}
+                        // deliteTodo={deliteTodo}
                     />
                 )
 
             })}
-            <NewApp/>
+            {/*<NewApp/>*/}
         </div>
     );
 }

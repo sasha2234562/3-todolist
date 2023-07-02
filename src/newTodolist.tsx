@@ -12,6 +12,7 @@ type newTodolistPropsType = {
     filter: (filter: FilterValuesType, todoId: string) => void
     filt: string
     todoId: string
+    deleteTodo: (todoId: string)=>void
 }
 
 export const NewTodolist = (props: newTodolistPropsType) => {
@@ -42,9 +43,13 @@ export const NewTodolist = (props: newTodolistPropsType) => {
     const onComplitedClickHandler = () => {
         props.filter('completed', props.todoId)
     }
+    const deliteTodolist = ()=> {
+        props.deleteTodo(props.todoId)
+    }
     return (
         <div>
             <h3>{props.title}</h3>
+            <button onClick={deliteTodolist}>x</button>
             <input
                 onChange={onChangeHandler}
                 value={value}
