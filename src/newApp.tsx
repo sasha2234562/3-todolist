@@ -65,6 +65,14 @@ export const NewApp = () => {
         {id: todolistOne, title: "What do you do today?", filter: 'active'},
         {id: todolistTwo, title: "I need to bye tomorrow", filter: 'completed'},
     ])
+
+    const  deleteTodolist = (todoId: string)=> {
+        let todo = todolists.find((item)=> item.id !== todoId);
+        todo&& setTodolists([todo])
+        delete allTasksObj[todoId]
+        setAllTaskaObj({...allTasksObj})
+
+    }
     return (
         <div>
             {todolists.map((item) => {
@@ -87,6 +95,7 @@ export const NewApp = () => {
                             filter={filter}
                             filt={item.filter}
                             todoId={item.id}
+                            deleteTodo={deleteTodolist}
                         />
                     </div>
                 )
