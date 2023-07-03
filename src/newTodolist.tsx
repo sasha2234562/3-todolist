@@ -8,29 +8,15 @@ type newTodolistPropsType = {
     tasks: Array<newTasksType>
     title: string
     addNewTasks: (value: string, todoId: string) => void
-    removeTask: (id: string, todoId : string) => void
+    removeTask: (id: string, todoId: string) => void
     changeStatus: (id: string, checked: boolean, todoId: string) => void
     filter: (filter: FilterValuesType, todoId: string) => void
     filt: string
     todoId: string
-    deleteTodo: (todoId: string)=>void
+    deleteTodo: (todoId: string) => void
 }
 
 export const NewTodolist = (props: newTodolistPropsType) => {
-    let [value, setValue] = useState('')
-    let [error, setError] = useState<null | boolean>(null)
-
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.currentTarget.value)
-        setError(false)
-    }
-    const onClickHandler = () => {
-        if (!value) {
-            setError(true)
-        }
-        props.addNewTasks(value, props.todoId)
-        setValue('')
-    }
     const removeOnclickHandler = (id: string) => {
         props.removeTask(id, props.todoId)
     }
@@ -44,13 +30,10 @@ export const NewTodolist = (props: newTodolistPropsType) => {
     const onComplitedClickHandler = () => {
         props.filter('completed', props.todoId)
     }
-    const deliteTodolist = ()=> {
-        props.deleteTodo(props.todoId)
-    }
     return (
         <div>
             <h3>{props.title}</h3>
-            <NewUniversalInputTwo/>
+            <NewUniversalInputTwo todoId={props.todoId} removeTask={props.removeTask} addNewTasks={props.addNewTasks} deleteTodo={props.deleteTodo}/>
             {/*<button onClick={deliteTodolist}>x</button>*/}
             {/*<input*/}
             {/*    onChange={onChangeHandler}*/}

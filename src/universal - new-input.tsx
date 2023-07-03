@@ -1,4 +1,5 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {ChangeEvent, KeyboardEvent, useState} from "react";
+
 
 type propsTypeNewInput = {
     addItem: (title: string) => void
@@ -6,27 +7,26 @@ type propsTypeNewInput = {
 
 
 export const AddItemForm = (props: propsTypeNewInput) => {
+
     let [title, setTitle] = useState("")
     let [error, setError] = useState<null | boolean>(null)
+
+
+    const addItem = () => {
+        props.addItem(title);
+        setError(title.trim() === '')
+        setTitle("");
+    }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
 
-    const addTask = () => {
-        props.addItem(title);
-        setError(title.trim() === '')
-        setTitle("");
-    }
-    const onKeyPressHandler= (e: KeyboardEvent<HTMLInputElement>)=> {
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement> ) => {
         if (e.charCode === 13) {
-            addTask();
+            addItem();
         }
     }
-
-const addTaskHandler= ()=> {
-        addTask()
-}
 
     return (
         <div>
@@ -36,7 +36,7 @@ const addTaskHandler= ()=> {
                    className={error ? 'error-input' : ''}
                    onKeyDown={() => setError(null)}
             />
-            <button onClick={addTaskHandler}>+</button>
+            <button onClick={addItem}>+</button>
             {error && <div className={'error-text'}>Введите текст</div> }
 
         </div>
