@@ -2,6 +2,7 @@ import {useState} from "react";
 import {v1} from "uuid";
 import {NewTodolist} from "./newTodolist";
 import {FilterValuesType, todolistType} from "./App";
+import {NewUniversalInputTwo} from "./new universal-input-two";
 
 export type  newTasksType = {
     id: string
