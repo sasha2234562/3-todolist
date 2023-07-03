@@ -3,7 +3,6 @@ import './App.css';
 import {v1} from 'uuid';
 import {Todolist} from "./Todolist";
 import {AddItemForm} from "./universal - new-input";
-import {NewApp} from "./newApp";
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type todolistType = {
@@ -78,23 +77,39 @@ function App() {
         let filter = todolists.filter((item) => item.id === todoId)
         setTodolists(filter)
     }
-const  addTodolist = (title: string)=> {
+    function AddTodolist (title: string){
         let todolist: todolistType = {
             id: v1(),
-            filter: 'all',
-            title: title,
+            title,
+            filter: 'all'
         }
-setTodolists([todolist, ...todolists])
-    setTasksObj({
-        ...tasksObj,
-        [todolist.id]: []
-    })
-}
 
-
+        setTodolists([todolist, ...todolists])
+        setTasksObj({
+            ...tasksObj,
+            [todolist.id]: []
+        })
+    }
+    function changeTodolistTitle(newValue: string, id: string) {
+       let todolist = todolists.find((item)=> item)
+        console.log(todolist)
+        if(todolist) {
+            todolist.title = newValue
+        }
+        setTodolists([...todolists])
+            console.log(todolist)
+    }
+    const changeTaskTitle =(id :string, title: string, todoId: string)=> {
+        const tasks = tasksObj[todoId]
+        let task = tasks.find((item) => item.id === id)
+        if (task) {
+            task.title = title
+        }
+        setTasksObj({...tasksObj})
+    }
     return (
         <div className={'App'}>
-            <AddItemForm addItem={addTodolist}/>
+            <AddItemForm addItem={AddTodolist} />
             {todolists.map((item) => {
 
                 let tasksForTodolist = tasksObj[item.id];
@@ -107,6 +122,7 @@ setTodolists([todolist, ...todolists])
                 }
                 return (
                     <Todolist
+                        changeTodolistTitle={changeTodolistTitle}
                         key={item.id}
                         title={item.title}
                         tasks={tasksForTodolist}
@@ -116,12 +132,13 @@ setTodolists([todolist, ...todolists])
                         changeStatus={changeStatus}
                         filter={item.filter}
                         id={item.id}
+                        changeTaskTitle={changeTaskTitle}
                         // deliteTodo={deliteTodo}
                     />
                 )
 
             })}
-            <NewApp/>
+            {/*<NewApp/>*/}
         </div>
     );
 }
