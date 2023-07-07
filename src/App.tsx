@@ -91,13 +91,11 @@ function App() {
         })
     }
     function changeTodolistTitle(newValue: string, id: string) {
-       let todolist = todolists.find((item)=> item)
-        console.log(todolist)
+       let todolist = todolists.find((item)=> item.id === id)
         if(todolist) {
             todolist.title = newValue
+            setTodolists([...todolists])
         }
-        setTodolists([...todolists])
-            console.log(todolist)
     }
     const changeTaskTitle =(id :string, title: string, todoId: string)=> {
         const tasks = tasksObj[todoId]
