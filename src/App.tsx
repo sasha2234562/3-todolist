@@ -73,11 +73,13 @@ function App() {
         {id: todolistIdOne, title: "What to learn", filter: 'active'},
         {id: todolistIdTwo, title: "I need to bye today", filter: 'completed'},
     ])
-    const deliteTodo = (todoId: string) => {
-        let filter = todolists.filter((item) => item.id === todoId)
-        setTodolists(filter)
+    const removeTodolist = (todoId: string) => {
+        let filterTodo = todolists.filter((item) => item.id !== todoId)
+        setTodolists(filterTodo)
+        delete tasksObj[todoId]
     }
-    function AddTodolist (title: string){
+
+    function AddTodolist(title: string) {
         let todolist: todolistType = {
             id: v1(),
             title,
@@ -90,14 +92,16 @@ function App() {
             [todolist.id]: []
         })
     }
+
     function changeTodolistTitle(newValue: string, id: string) {
-       let todolist = todolists.find((item)=> item.id === id)
-        if(todolist) {
+        let todolist = todolists.find((item) => item.id === id)
+        if (todolist) {
             todolist.title = newValue
             setTodolists([...todolists])
         }
     }
-    const changeTaskTitle =(id :string, title: string, todoId: string)=> {
+
+    const changeTaskTitle = (id: string, title: string, todoId: string) => {
         const tasks = tasksObj[todoId]
         let task = tasks.find((item) => item.id === id)
         if (task) {
@@ -107,7 +111,7 @@ function App() {
     }
     return (
         <div className={'App'}>
-            <AddItemForm addItem={AddTodolist} />
+            <AddItemForm addItem={AddTodolist}/>
             {todolists.map((item) => {
 
                 let tasksForTodolist = tasksObj[item.id];
@@ -131,7 +135,7 @@ function App() {
                         filter={item.filter}
                         id={item.id}
                         changeTaskTitle={changeTaskTitle}
-                        // deliteTodo={deliteTodo}
+                        removeTodolist={() => removeTodolist(item.id)}
                     />
                 )
 
