@@ -77,6 +77,7 @@ function App() {
         let filterTodo = todolists.filter((item) => item.id !== todoId)
         setTodolists(filterTodo)
         delete tasksObj[todoId]
+        setTasksObj(tasksObj)
     }
 
     function AddTodolist(title: string) {
