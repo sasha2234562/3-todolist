@@ -34,10 +34,14 @@ export function Todolist(props: PropsType) {
     function changeTodolistTitle(newValue: string) {
         props.changeTodolistTitle(props.id, newValue)
     }
+    const removeTodolist= ()=> {
+        alert()
+    }
 
     return <div>
         <h3>
             <EditableSpan title={props.title} onChange={changeTodolistTitle}/>
+            <button onClick={removeTodolist}>x</button>
         </h3>
         <AddItemForm addItem={addTask}/>
         <ul>
